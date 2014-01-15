@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.MyFragmentSample"
+          android:versionCode="1"
+          android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18" />
+
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/ic_launcher">
+
+        <activity android:name=".MainActivity" android:label="@string/activity_label_main" android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MasterFragment" />
+
+        <activity android:name=".SlaveFragment" />
+
+        <activity android:name=".NewEditActivity"
+                  android:label="@string/activity_label_new_edit"
+                  android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.MyFragmentSample.MainActivity" />
+        </activity>
+
+    </application>
+
+</manifest>

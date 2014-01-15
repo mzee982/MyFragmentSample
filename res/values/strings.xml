@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyFragmentSample</string>
+    <string name="activity_label_main">MyFragmentSample</string>
+    <string name="activity_label_new_edit">New/Edit</string>
+    <string name="activity_label_new">New</string>
+    <string name="activity_label_edit">Edit</string>
+    <string name="action_new">New</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_accept">Accept</string>
+    <string name="label_master">Master</string>
+    <string name="label_slave">Slave</string>
+</resources>
