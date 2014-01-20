@@ -11,4 +11,6 @@
     <string name="action_accept">Accept</string>
     <string name="label_master">Master</string>
     <string name="label_slave">Slave</string>
+    <string name="dialog_discard_message">Discard changes?</string>
+    <string name="dialog_remove_message">Remove element?</string>
 </resources>

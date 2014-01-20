@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
     private final static String FRAGMENT_PORTRAIT_SLAVE = "FRAGMENT_PORTRAIT_SLAVE";
     private final static int REQUEST_CODE_NEW_EDIT = 1;
     private int mCurrentPosition = -1;
-    private long mCurrentId = -1;
+    private long mCurrentId = -1L;
 
     //
     @Override
@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
             case R.id.action_new:
                 intent = new Intent(this, NewEditActivity.class);
                 intent.putExtra(EXTRA_MESSAGE_MODE, EXTRA_MESSAGE_MODE_NEW);
-                intent.putExtra(EXTRA_MESSAGE_ID, -1);
+                intent.putExtra(EXTRA_MESSAGE_ID, -1L);
                 startActivityForResult(intent, REQUEST_CODE_NEW_EDIT);
 
                 break;
@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
             // Reset master selection
             if (mCurrentPosition >= 0) {
                 mCurrentPosition = -1;
-                mCurrentId = -1;
+                mCurrentId = -1L;
 
                 // Refresh the action bar
                 invalidateOptionsMenu();
@@ -183,7 +183,7 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
 
                     // Reset master selection
                     mCurrentPosition = -1;
-                    mCurrentId = -1;
+                    mCurrentId = -1L;
 
                     // Refresh the action bar
                     invalidateOptionsMenu();

@@ -1,6 +1,7 @@
 package com.example.MyFragmentSample;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -9,10 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-public class NewEditActivity extends Activity {
+public class NewEditActivity extends Activity implements DiscardRemoveDialogFragment.DiscardRemoveDialogListener {
 
+    public static final String DIALOG_DISCARD = "DIALOG_DISCARD";
+    public static final String DIALOG_REMOVE = "DIALOG_REMOVE";
     private String mMode;
-    private long mId = -1;
+    private long mId = -1L;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,7 @@ public class NewEditActivity extends Activity {
 
         // Get EXTRA MESSAGES
         mMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE_MODE);
-        mId = getIntent().getLongExtra(MainActivity.EXTRA_MESSAGE_ID, -1);
+        mId = getIntent().getLongExtra(MainActivity.EXTRA_MESSAGE_ID, -1L);
 
         // Set activity title according to mode
         // MODE NEW
@@ -94,14 +97,14 @@ public class NewEditActivity extends Activity {
 
                 // MODE NEW
                 if (MainActivity.EXTRA_MESSAGE_MODE_NEW.equals(mMode)) {
-                    //TODO Implement warning dialogue
-                    discard();
+                    DiscardRemoveDialogFragment dialog = new DiscardRemoveDialogFragment();
+                    dialog.show(getFragmentManager(), DIALOG_DISCARD);
                 }
 
                 // MODE EDIT
                 else {
-                    //TODO Implement warning dialogue
-                    remove();
+                    DiscardRemoveDialogFragment dialog = new DiscardRemoveDialogFragment();
+                    dialog.show(getFragmentManager(), DIALOG_REMOVE);
                 }
 
                 return true;
@@ -125,6 +128,26 @@ public class NewEditActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+
+        // DIALOG DISCARD
+        if (DIALOG_DISCARD.equals(dialog.getTag())) {
+            discard();
+        }
+
+        // DIALOG REMOVE
+        else if (DIALOG_REMOVE.equals(dialog.getTag())) {
+            remove();
+        }
+
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        // Nothing to do
     }
 
     private void discard() {
