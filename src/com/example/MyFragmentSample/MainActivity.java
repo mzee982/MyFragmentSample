@@ -20,8 +20,10 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
     public final static String EXTRA_MESSAGE_MODE_EDIT = "EDIT";
     public final static String EXTRA_MESSAGE_ID = "ID";
     public final static String FRAGMENT_PORTRAIT_MASTER = "FRAGMENT_PORTRAIT_MASTER";
-    private final static String FRAGMENT_PORTRAIT_SLAVE = "FRAGMENT_PORTRAIT_SLAVE";
+    public final static String FRAGMENT_PORTRAIT_SLAVE = "FRAGMENT_PORTRAIT_SLAVE";
     private final static int REQUEST_CODE_NEW_EDIT = 1;
+    public final static int LOADER_MASTER_LIST = 1;
+    public final static int LOADER_SLAVE = 2;
     private int mCurrentPosition = -1;
     private long mCurrentId = -1L;
 
@@ -230,12 +232,15 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
     //
     public void onMasterSelected(int position, long id) {
 
+        mCurrentPosition = position;
+        mCurrentId = id;
+
         // LANDSCAPE LAYOUT
         if (getLayout() == LAYOUT_LANDSCAPE) {
             SlaveFragment slaveFragment = (SlaveFragment) getFragmentManager().findFragmentById(R.id.slave_fragment);
 
             // Update the content of slave pane
-            slaveFragment.updateSlaveView(id);
+            slaveFragment.updateSlaveView();
         }
 
         // PORTRAIT LAYOUT
@@ -248,9 +253,6 @@ public class MainActivity extends Activity implements MasterFragment.OnMasterSel
             transaction.addToBackStack(null);
             transaction.commit();
         }
-
-        mCurrentPosition = position;
-        mCurrentId = id;
 
         // Refresh the action bar
         invalidateOptionsMenu();

@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SampleDataDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "SampleData.db";
+    public static final String QUERY_TYPE_MASTER_LIST = "QUERY_TYPE_MASTER_LIST";
+    public static final String QUERY_TYPE_SLAVE = "QUERY_TYPE_SLAVE";
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
